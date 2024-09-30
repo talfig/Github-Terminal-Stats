@@ -1,6 +1,4 @@
-<p align="center" >
-  <b> Terminal-Stats </b>
-</p>
+<h1 align="center"> Terminal-Stats </h1>
 
 <p align="center" >
   <a href="https://github.com/talfig">

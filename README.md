@@ -1,5 +1,5 @@
 <p align="center" >
-  Terminal-Stats
+  <a> Terminal-Stats </a>
 </p>
 
 <p align="center" >

@@ -1,4 +1,6 @@
-# Terminal-Stats
+<p align="center" >
+  Terminal-Stats
+</p>
 
 <p align="center" >
   <a href="https://github.com/talfig">

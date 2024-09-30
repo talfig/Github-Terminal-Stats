@@ -8,9 +8,9 @@
 
 <img src="https://github.com/talfig/talfig/blob/main/line-neon-thick.gif" width="100%"> 
 
-## 📊 What is Terminal-Stats?
+## 📊 What is Github-Terminal-Stats?
 
-**Terminal-Stats** is a dynamic and automated way to display your GitHub statistics in a stylish terminal-like format! Every day, the stats are updated automatically via GitHub Actions, which fetch data like:
+**Github-Terminal-Stats** is a dynamic and automated way to display your GitHub statistics in a stylish terminal-like format! Every day, the stats are updated automatically via GitHub Actions, which fetch data like:
 
 - 🌟 Total Stars
 - 🍴 Forks

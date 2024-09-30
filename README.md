@@ -5,3 +5,5 @@
     <img src="https://github.com/talfig/Terminal-Stats/blob/main/new_terminal_stats.svg" alt="Update Github Stats" title="Terminal Style GitHub Stats">
   </a>
 </p>
+
+<img src="https://github.com/talfig/talfig/blob/main/line-neon-thick.gif" width="100%"> 

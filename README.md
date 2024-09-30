@@ -1,4 +1,4 @@
-<h1 align="center"> 👾 Terminal-Stats 👾 </h1>
+<h1 align="center"> 👨‍💻 Terminal-Stats 👨‍💻 </h1>
 
 <p align="center" >
   <a href="https://github.com/talfig">

@@ -64,10 +64,31 @@ issues_url = f"{base_url}/search/issues?q=type:issue+author:{username}"
 issues_response = requests.get(issues_url, headers=headers)
 total_issues = issues_response.json().get("total_count", 0)
 
-# Fetch gists count
-gists_url = f"{base_url}/users/{username}/gists"
-gists_response = requests.get(gists_url, headers=headers)
-total_gists = len(gists_response.json())
+def fetch_gists_count():
+    gists_url = f"{base_url}/users/{username}/gists"
+    page = 1
+    per_page = 100  # Max allowed per page
+    total_gists = 0
+
+    while True:
+        response = requests.get(gists_url, headers=headers, params={'page': page, 'per_page': per_page})
+        
+        if response.status_code != 200:
+            print(f"Error fetching gists, status code: {response.status_code}")
+            break
+
+        gists = response.json()
+        if not gists:
+            # No more gists to fetch
+            break
+
+        total_gists += len(gists)
+        page += 1  # Move to next page
+
+    return total_gists
+
+# Fetch and print total gists count
+total_gists = fetch_gists_count()
 
 # Store stats
 stats = {

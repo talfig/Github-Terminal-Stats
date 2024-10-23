@@ -120,7 +120,7 @@ placeholder_mapping = {
     "followers": "[Followers]",
     "pull_requests": "[Pull Requests]",
     "issues": "[Issues]",
-    "repos": "[Repository]",
+    "repos": "[Repositories]",
     "gists": "[Gists]",
     "uptime": "[uptime]"
 }

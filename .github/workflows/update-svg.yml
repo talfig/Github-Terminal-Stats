@@ -24,7 +24,7 @@ jobs:
 
       - name: Update SVG with GitHub stats
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           python update_svg.py
 
@@ -40,4 +40,4 @@ jobs:
             echo "No changes to commit."
           fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the built-in GITHUB_TOKEN for authentication
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # Use the built-in GITHUB_TOKEN for authentication

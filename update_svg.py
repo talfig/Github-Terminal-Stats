@@ -29,30 +29,37 @@ for repo in repos:
     total_forks += repo.get("forks_count", 0)
     creation_dates.append(repo['created_at'])
 
-    # Fetch all commits for each repository (with pagination)
+    # Set the initial URL for commits with the author filter
     commits_url = f"{base_url}/repos/{username}/{repo['name']}/commits?author={username}&per_page=100"
     page = 1
 
+    # Fetch commits with pagination
     while True:
         paginated_commits_url = f"{commits_url}&page={page}"
         commits_response = requests.get(paginated_commits_url, headers=headers)
 
-        # Check if the response is successful and contains valid JSON
+        # Check for successful response
         if commits_response.status_code != 200:
             print(f"Error fetching commits for {repo['name']}: {commits_response.status_code}")
             break
         
         commits = commits_response.json()
         
-        # If there's an error in JSON format, log and break
+        # If the response is an error message, log and exit loop
         if isinstance(commits, dict) and commits.get("message"):
             print(f"API Error: {commits.get('message')}")
             break
-        
-        if not commits:
-            break  # No more commits on the current page
 
-        total_commits += len(commits)
+        # If there are no more commits, stop paginating
+        if not commits:
+            break
+
+        # Count only commits authored by the user
+        for commit in commits:
+            if commit.get("author") and commit["author"]["login"] == username:
+                total_commits += 1
+
+        # Move to the next page
         page += 1
 
 # Calculate total uptime in days from the earliest repo creation date

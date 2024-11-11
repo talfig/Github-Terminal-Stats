@@ -27,20 +27,30 @@ creation_dates = []
 for repo in repos:
     total_stars += repo.get("stargazers_count", 0)
     total_forks += repo.get("forks_count", 0)
-
-    # Collect creation dates for uptime calculation
     creation_dates.append(repo['created_at'])
-    
-    # Fetch all commits for each repository (with pagination)
-    commits_url = f"{base_url}/repos/{username}/{repo['name']}/commits?author={username}"
-    page = 1
-    while True:
-        paginated_commits_url = f"{commits_url}&page={page}&per_page=100"
-        commits_response = requests.get(paginated_commits_url, headers=headers)
-        commits = commits_response.json()
 
-        if not commits or len(commits) == 0:
-            break  # No more commits
+    # Fetch all commits for each repository (with pagination)
+    commits_url = f"{base_url}/repos/{username}/{repo['name']}/commits?author={username}&per_page=100"
+    page = 1
+
+    while True:
+        paginated_commits_url = f"{commits_url}&page={page}"
+        commits_response = requests.get(paginated_commits_url, headers=headers)
+
+        # Check if the response is successful and contains valid JSON
+        if commits_response.status_code != 200:
+            print(f"Error fetching commits for {repo['name']}: {commits_response.status_code}")
+            break
+        
+        commits = commits_response.json()
+        
+        # If there's an error in JSON format, log and break
+        if isinstance(commits, dict) and commits.get("message"):
+            print(f"API Error: {commits.get('message')}")
+            break
+        
+        if not commits:
+            break  # No more commits on the current page
 
         total_commits += len(commits)
         page += 1

@@ -13,20 +13,7 @@ base_url = "https://api.github.com"
 # Fetch repositories to calculate stars, forks, and commits
 repos_url = f"{base_url}/users/{username}/repos"
 repos_response = requests.get(repos_url, headers=headers)
-
-# Ensure response is valid
-if repos_response.status_code != 200:
-    print(f"Error fetching repositories: {repos_response.status_code} - {repos_response.text}")
-    repos = []
-else:
-    try:
-        repos = repos_response.json()
-        if not isinstance(repos, list):
-            print("Unexpected format for repositories data. Expected a list.")
-            repos = []
-    except ValueError as e:
-        print(f"Failed to parse repositories data: {e}")
-        repos = []
+repos = repos_response.json()
 
 # Initialize counts
 total_stars = 0

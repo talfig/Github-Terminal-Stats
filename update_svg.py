@@ -14,6 +14,7 @@ base_url = "https://api.github.com"
 repos_url = f"{base_url}/users/{username}/repos"
 repos_response = requests.get(repos_url, headers=headers)
 repos = repos_response.json()
+print(repos)
 
 # Initialize counts
 total_stars = 0

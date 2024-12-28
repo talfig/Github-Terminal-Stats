@@ -21,6 +21,8 @@ if repos_response.status_code != 200:
 
 repos = repos_response.json()
 
+print(repos)
+
 # Initialize counts
 total_stars = 0
 total_forks = 0
